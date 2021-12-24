@@ -1,0 +1,16 @@
+.root {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 320px;
+  height: calc(100vh - 80px);
+  @apply border-r border-gray-200 h-full p-6;
+}
+
+.filterContent {
+  @apply py-6;
+
+  & > * {
+    @apply mb-6;
+  }
+}

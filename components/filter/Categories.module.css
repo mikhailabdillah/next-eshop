@@ -1,0 +1,26 @@
+.root {
+  @apply block;
+
+  & ul {
+    list-style: none;
+    position: relative;
+    height: 200px;
+  }
+}
+
+.check {
+  @apply flex items-center py-1 my-1 cursor-pointer;
+  font-size: 14px;
+
+  & input {
+    @apply mr-3 rounded bg-gray-200 text-primary border-transparent focus:border-transparent focus:bg-primary focus:ring-1 focus:ring-offset-2 focus:ring-primary;
+  }
+}
+
+.scrollbar {
+  padding-left: 6px;
+
+  & :global .ps__rail-y {
+    opacity: 0.6;
+  }
+}

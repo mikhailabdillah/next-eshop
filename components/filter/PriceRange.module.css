@@ -1,0 +1,12 @@
+.root {
+  position: relative;
+}
+
+.inputWrap {
+  @apply flex flex-row flex-nowrap justify-between mb-4;
+
+  & input {
+    width: calc(50% - 20px);
+    @apply border-gray-300 rounded-md text-sm focus:ring-1 focus:border-transparent focus:ring-primary;
+  }
+}

@@ -1,0 +1,15 @@
+.btn {
+  @apply inline-flex flex-row justify-center items-center py-3 px-4 bg-primary text-white border border-primary rounded-md transition-colors;
+}
+
+.btnLabel {
+  @apply block;
+}
+
+.btnSmall {
+  @apply text-sm py-2.5 px-3;
+}
+
+.btnLarge {
+  @apply text-lg py-4 px-4;
+}

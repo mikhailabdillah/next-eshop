@@ -1,0 +1,4 @@
+.root {
+  width: 100%;
+  @apply px-6 mx-auto;
+}
