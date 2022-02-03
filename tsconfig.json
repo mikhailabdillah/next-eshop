@@ -18,6 +18,7 @@
     "paths": {
       "@components": ["components"],
       "@components/*": ["components/*"],
+      "@icons/*": ["components/icon/*"],
       "@lib/*": ["lib/*"],
       "@config/*": ["config/*"],
       "@custom-types/*": ["custom-types/*"]
