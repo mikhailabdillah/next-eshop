@@ -1,5 +1,30 @@
 .root {
-  position: fixed;
-  top: 80px;
-  right: 0;
+  z-index: 1040;
+}
+
+.overlay {
+  @apply fixed inset-0 bg-transparent w-full;
+  z-index: 1035;
+}
+
+.floating_button {
+  @apply absolute top-0 right-0 bg-gray-200;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  & svg {
+    margin: auto;
+  }
+}
+
+.main_content {
+  @apply fixed top-20 right-0 bg-white h-full shadow-2xl;
+  width: 320px;
+  z-index: 1036;
+}
+
+.animate_modal {
+  transform: translateX(320px);
+  @apply opacity-0;
 }

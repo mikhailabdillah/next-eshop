@@ -1,7 +1,11 @@
-import { FC } from 'react'
+import React from 'react'
 import s from './Container.module.css'
 
-const Container: FC = (props) => {
+type Props = {
+  children?: React.ReactNode
+}
+
+const Container = (props: Props) => {
   const { children } = props
 
   return <div className={s.root}>{children}</div>

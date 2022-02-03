@@ -1,0 +1,9 @@
+.root {
+  @apply fixed top-20 right-0 bg-white h-full shadow-2xl;
+  width: 320px;
+  z-index: 1040;
+}
+
+.main_content {
+  @apply relative w-full;
+}

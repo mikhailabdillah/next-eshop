@@ -1,0 +1,7 @@
+.searchBar {
+  @apply block;
+
+  & input {
+    @apply h-14 w-full rounded-md bg-gray-100 text-secondary px-4 border-0 focus:ring-1 focus:ring-primary;
+  }
+}

@@ -5,7 +5,8 @@
   width: 100%;
   height: 80px;
   border-bottom: 1px solid;
-  @apply border-gray-200;
+  @apply border-gray-200 bg-white;
+  z-index: 1020;
 }
 
 .root nav {
@@ -63,5 +64,5 @@
 }
 
 .menu_user {
-  @apply flex flex-row mr-6;
+  @apply flex flex-row mr-6 items-center;
 }
