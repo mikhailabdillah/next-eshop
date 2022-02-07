@@ -29,15 +29,15 @@ const ProductCard = (props: Props) => {
       </div>
       <div className={s.product_info}>
         <h5 className={s.product_name}>Test Product</h5>
-        <Grid container justifyContent="between" className="text-sm">
-          <Grid item>
+        <Grid.Container justifyContent="between" className="text-sm">
+          <Grid.Items>
             <div className={s.product_rating_info}>(85)</div>
-          </Grid>
-          <Grid item>
+          </Grid.Items>
+          <Grid.Items>
             <div>$20</div>
             <div></div>
-          </Grid>
-        </Grid>
+          </Grid.Items>
+        </Grid.Container>
       </div>
     </div>
   )

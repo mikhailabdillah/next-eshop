@@ -49,17 +49,17 @@ const Home: NextPage = () => {
         {!isMobile && <ShopFilter />}
         <div className="p-4 relative md:p-8" style={desktopMainStyles}>
           <Search />
-          <Grid container className="my-8">
-            <Grid item className={cn('grid-12', 'sm:grid-6', 'md:grid-4')}>
+          <Grid.Container className="my-8">
+            <Grid.Items xs={12} sm={6} md={4}>
               <ProductCard onClick={() => dispatch({ type: 'open' })} />
-            </Grid>
-            <Grid item className={cn('grid-12', 'sm:grid-6', 'md:grid-4')}>
+            </Grid.Items>
+            <Grid.Items xs={12} sm={6} md={4}>
               <ProductCard onClick={() => dispatch({ type: 'open' })} />
-            </Grid>
-            <Grid item className={cn('grid-12', 'sm:grid-6', 'md:grid-4')}>
+            </Grid.Items>
+            <Grid.Items xs={12} sm={6} md={4}>
               <ProductCard onClick={() => dispatch({ type: 'open' })} />
-            </Grid>
-          </Grid>
+            </Grid.Items>
+          </Grid.Container>
           <ItemDetails
             open={state.open}
             onClose={() => dispatch({ type: 'close' })}
