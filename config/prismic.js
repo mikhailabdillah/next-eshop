@@ -1,7 +1,9 @@
-import Prismic from '@prismicio/client'
+import * as prismic from '@prismicio/client'
 
-const apiEndpoint = process.env.PRISMIC_API_ENDPOINT
-const accessToken = process.env.PRISMIC_ACCESS_TOKEN
+const endpoint = prismic.getEndpoint(process.env.PRISMIC_REPO)
+export const client = prismic.createClient(endpoint, {
+  accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+})
 
 // -- Link resolution rules
 // Manages the url links to internal Prismic documents
@@ -23,16 +25,16 @@ export const hrefResolver = (doc) => {
   return '/'
 }
 
-export const Client = (req = null) =>
-  Prismic.client(apiEndpoint, createClientOptions(req, accessToken))
+// export const Client = (req = null) =>
+//   prismic.client(apiEndpoint, createClientOptions(req, accessToken))
 
-const createClientOptions = (req = null, prismicAccessToken = null) => {
-  const reqOption = req ? { req } : {}
-  const accessTokenOption = prismicAccessToken
-    ? { accessToken: prismicAccessToken }
-    : {}
-  return {
-    ...reqOption,
-    ...accessTokenOption,
-  }
-}
+// const createClientOptions = (req = null, prismicAccessToken = null) => {
+//   const reqOption = req ? { req } : {}
+//   const accessTokenOption = prismicAccessToken
+//     ? { accessToken: prismicAccessToken }
+//     : {}
+//   return {
+//     ...reqOption,
+//     ...accessTokenOption,
+//   }
+// }
