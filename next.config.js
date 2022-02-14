@@ -3,13 +3,13 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: [],
+    domains: ['images.prismic.io'],
   },
-  // webpack(config) {
-  //   config.module.rules.push({
-  //     test: /\.svg$/,
-  //     use: ["@svgr/webpack"],
-  //   });
-  //   return config;
-  // },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    })
+    return config
+  },
 }
