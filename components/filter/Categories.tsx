@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import s from './Categories.module.css'
-import cat from '../../custom-types/categories.json'
+import cat from '../../custom-types/data/categories.json'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
