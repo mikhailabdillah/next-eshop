@@ -1,5 +1,6 @@
-import { useState, useReducer } from 'react'
-import type { NextPage } from 'next'
+import { useState, useReducer, ReactNode } from 'react'
+import { PrismicDocument } from '@prismicio/types'
+import type { GetStaticProps } from 'next'
 import Meta from '@components/meta'
 import cn from 'classnames'
 import { ShopFilter } from '@components/sidebar'
@@ -8,6 +9,12 @@ import { ProductCard } from '@components/product'
 import { Grid } from '@components/core'
 import { useScreenSize } from '@lib/hooks/useScreenSize'
 import { ItemDetails } from '@components/sidebar'
+import { client } from '@config/prismic'
+
+type PageProps = {
+  children?: ReactNode
+  data?: PrismicDocument[]
+}
 
 const initialState = { open: false }
 
@@ -22,8 +29,9 @@ function reducer(state: any, action: any) {
   }
 }
 
-const Home: NextPage = () => {
+const Home = (props: PageProps) => {
   const isMobile = useScreenSize(768)
+  const [data, setData] = useState<any[]>(props.data || [])
 
   const desktopMainStyles = {
     marginTop: 80,
@@ -33,15 +41,6 @@ const Home: NextPage = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  // const [open, setOpen] = useState(false)
-  // const handleModal = () => {
-  //   return setOpen(!open)
-  // }
-
-  // const handleModalClose = () => {
-  //   return setOpen(false)
-  // }
-
   return (
     <>
       <Meta />
@@ -50,15 +49,20 @@ const Home: NextPage = () => {
         <div className="p-4 relative md:p-8" style={desktopMainStyles}>
           <Search />
           <Grid.Container className="my-8">
-            <Grid.Items xs={12} sm={6} md={4}>
-              <ProductCard onClick={() => dispatch({ type: 'open' })} />
-            </Grid.Items>
-            <Grid.Items xs={12} sm={6} md={4}>
-              <ProductCard onClick={() => dispatch({ type: 'open' })} />
-            </Grid.Items>
-            <Grid.Items xs={12} sm={6} md={4}>
-              <ProductCard onClick={() => dispatch({ type: 'open' })} />
-            </Grid.Items>
+            {/* <Grid.Items xs={12} sm={6} md={4}>
+              <ProductCard
+                onClick={() => dispatch({ type: 'open' })}
+                data={data}
+              />
+            </Grid.Items> */}
+            {data.map((product, index) => (
+              <Grid.Items xs={12} sm={6} md={4} key={index}>
+                <ProductCard
+                  onClick={() => dispatch({ type: 'open' })}
+                  data={product.data}
+                />
+              </Grid.Items>
+            ))}
           </Grid.Container>
           <ItemDetails
             open={state.open}
@@ -71,3 +75,11 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await client.getAllByType('products')
+
+  return {
+    props: { data },
+  }
+}

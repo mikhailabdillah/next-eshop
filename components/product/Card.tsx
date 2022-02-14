@@ -3,11 +3,16 @@ import cn from 'classnames'
 import { Grid } from '@components/core'
 import Heart from '@icons/Heart'
 import Image from 'next/image'
+import type { ProductCardData } from '@custom-types/products'
 
-type Props = { className?: string; onClick?: () => void }
+type Props = {
+  className?: string
+  onClick?: () => void
+  data?: ProductCardData
+}
 
 const ProductCard = (props: Props) => {
-  const { className, onClick } = props
+  const { className, onClick, data } = props
 
   return (
     <div className={cn(s.root, className)} onClick={onClick}>
@@ -18,24 +23,25 @@ const ProductCard = (props: Props) => {
       </div>
       <div className={s.product_thumbnail}>
         <div className="relative w-full h-full">
-          <Image
-            src="/products/products.jpg"
-            alt="Product"
-            width={680}
-            height={510}
-            layout="responsive"
-          />
+          {data?.product_image?.url && (
+            <Image
+              src={data.product_image.url}
+              alt={data.product_image.alt || 'Product'}
+              width={data.product_image.dimensions.width}
+              height={data.product_image.dimensions.height}
+              layout="responsive"
+            />
+          )}
         </div>
       </div>
       <div className={s.product_info}>
-        <h5 className={s.product_name}>Test Product</h5>
+        <h5 className={s.product_name}>{data?.product_name}</h5>
         <Grid.Container justifyContent="between" className="text-sm">
           <Grid.Items>
             <div className={s.product_rating_info}>(85)</div>
           </Grid.Items>
           <Grid.Items>
-            <div>$20</div>
-            <div></div>
+            <div>${data?.product_price}</div>
           </Grid.Items>
         </Grid.Container>
       </div>
