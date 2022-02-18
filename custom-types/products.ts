@@ -5,10 +5,10 @@ export type ProductCardProps = PrismicDocument & {}
 
 export type ProductCardData = {
   product_image?: PrismicImage
-  product_name?: String
-  product_price?: Number
-  product_rating?: Number
+  product_name?: string
+  product_price?: number
+  product_rating?: number
   product_categories?: any
-  product_descriptions?: RichTextField[]
-  hide_item: Boolean
+  product_descriptions: RichTextField[]
+  hide_item: boolean
 }
