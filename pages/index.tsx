@@ -1,8 +1,7 @@
-import { useState, useReducer, ReactNode } from 'react'
+import { useState, ReactNode, useEffect } from 'react'
 import { PrismicDocument } from '@prismicio/types'
 import type { GetStaticProps } from 'next'
 import Meta from '@components/meta'
-import cn from 'classnames'
 import { ShopFilter } from '@components/sidebar'
 import { Search } from '@components/filter'
 import { ProductCard } from '@components/product'
@@ -10,64 +9,74 @@ import { Grid } from '@components/core'
 import { useScreenSize } from '@lib/hooks/useScreenSize'
 import { ItemDetails } from '@components/sidebar'
 import { client } from '@config/prismic'
+import type { ProductCardData } from '@custom-types/products'
 
 type PageProps = {
   children?: ReactNode
   data?: PrismicDocument[]
 }
 
-const initialState = { open: false }
-
-function reducer(state: any, action: any) {
-  switch (action.type) {
-    case 'open':
-      return { open: true }
-    case 'close':
-      return { open: false }
-    default:
-      throw new Error()
-  }
-}
-
 const Home = (props: PageProps) => {
   const isMobile = useScreenSize(768)
   const [data, setData] = useState<any[]>(props.data || [])
+  const [wrapperWidth, setWrapperWidth] = useState(
+    !isMobile ? 'calc(100% - 320px)' : undefined
+  )
+  const [charm, setCharm] = useState(false)
+  const [current, setCurrent] = useState<ProductCardData>()
 
-  const desktopMainStyles = {
+  const handleCharm = (product: any) => {
+    setCurrent(product)
+    if (!charm) {
+      openCharm()
+    }
+    wrapperWidth && setWrapperWidth('calc(100% - 640px)')
+  }
+
+  const openCharm = () => {
+    setCharm(true)
+  }
+
+  const closeCharm = () => {
+    setCharm(false)
+    setCurrent(undefined)
+    wrapperWidth && setWrapperWidth('calc(100% - 320px)')
+  }
+
+  let desktopMainStyles = {
     marginTop: 80,
-    width: !isMobile ? 'calc(100% - 320px)' : undefined,
+    width: wrapperWidth,
     marginLeft: !isMobile ? 320 : undefined,
   }
 
-  const [state, dispatch] = useReducer(reducer, initialState)
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    desktopMainStyles = { ...desktopMainStyles, width: wrapperWidth }
+  }, [charm])
 
   return (
     <>
       <Meta />
       <div id="main-shop">
         {!isMobile && <ShopFilter />}
-        <div className="p-4 relative md:p-8" style={desktopMainStyles}>
+        <div
+          className="p-4 relative md:p-8 transition-all duration-300 ease-in-out"
+          style={desktopMainStyles}
+        >
           <Search />
           <Grid.Container className="my-8">
-            {/* <Grid.Items xs={12} sm={6} md={4}>
-              <ProductCard
-                onClick={() => dispatch({ type: 'open' })}
-                data={data}
-              />
-            </Grid.Items> */}
             {data.map((product, index) => (
               <Grid.Items xs={12} sm={6} md={4} key={index}>
                 <ProductCard
-                  onClick={() => dispatch({ type: 'open' })}
+                  onClick={() => handleCharm(product.data)}
                   data={product.data}
                 />
               </Grid.Items>
             ))}
           </Grid.Container>
-          <ItemDetails
-            open={state.open}
-            onClose={() => dispatch({ type: 'close' })}
-          />
+          {current && (
+            <ItemDetails open={charm} onClose={closeCharm} data={current} />
+          )}
         </div>
       </div>
     </>
