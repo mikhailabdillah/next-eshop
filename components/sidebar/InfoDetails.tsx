@@ -1,33 +1,37 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, Fragment } from 'react'
 import s from './InfoDetails.module.css'
-import Trash from '@icons/Trash'
-import { Dialog } from '@headlessui/react'
+import Image from 'next/image'
+import Close from '@icons/Close'
+import Modal from 'react-modal'
+import type { ProductCardData } from '@custom-types/products'
 
 type Props = {
-  children?: React.ReactNode
+  data: ProductCardData
   open: boolean
   onClose: () => void
 }
 
 const InfoDetails = (props: Props) => {
-  const { children, open, onClose } = props
+  const { data, open, onClose } = props
 
   return (
-    <>
-      <Dialog open={open} onClose={onClose} className={s.root}>
-        {/* <Dialog.Overlay className={s.overlay} /> */}
-        <button className={s.floating_button}>
-          <Trash />
+    <Modal
+      isOpen={open}
+      closeTimeoutMS={300}
+      onRequestClose={onClose}
+      contentLabel="Item Details"
+      shouldCloseOnOverlayClick={false}
+      overlayElement={(props, contentElement) => <>{contentElement}</>}
+      className={s.root}
+    >
+      <div className={s.main_content}>
+        <button className={s.floating_button} onClick={onClose}>
+          <Close />
         </button>
-        <div className={s.main_content}>
-          <p>
-            Are you sure you want to deactivate your account? All of your data
-            will be permanently removed. This action cannot be undone.
-          </p>
-          {children}
-        </div>
-      </Dialog>
-    </>
+        <div>I am a modal</div>
+        <h2 className="text-lg">{data?.product_name}</h2>
+      </div>
+    </Modal>
   )
 }
 

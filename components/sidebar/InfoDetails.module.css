@@ -1,9 +1,28 @@
 .root {
-  @apply fixed top-20 right-0 bg-white h-full shadow-2xl;
+  @apply fixed top-20 right-0 h-full transition-all duration-300 ease-in-out;
   width: 320px;
   z-index: 1040;
+  transform: translateX(320px);
+  opacity: 0;
+
+  &:global(.ReactModal__Content--after-open) {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.floating_button {
+  @apply absolute top-2 right-2 bg-gray-200;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  z-index: 50;
+
+  & svg {
+    margin: auto;
+  }
 }
 
 .main_content {
-  @apply relative w-full;
+  @apply w-full h-full px-6 py-4 bg-white shadow-2xl;
 }

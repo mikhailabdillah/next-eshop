@@ -35,3 +35,8 @@
 
 .product_rating_info {
 }
+
+.product_price {
+  @apply font-semibold;
+  font-size: 18px;
+}

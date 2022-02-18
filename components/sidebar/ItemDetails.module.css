@@ -1,17 +1,27 @@
 .root {
+  @apply fixed top-20 right-0 h-full transition-all duration-300 ease-in-out;
+  width: 320px;
   z-index: 1040;
+  transform: translateX(320px);
+  opacity: 0;
+
+  &:global(.ReactModal__Content--after-open) {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .overlay {
-  @apply fixed inset-0 bg-transparent w-full;
-  z-index: 1035;
+  @apply fixed inset-0 bg-black opacity-60 w-full;
+  z-index: 50;
 }
 
 .floating_button {
-  @apply absolute top-0 right-0 bg-gray-200;
+  @apply absolute top-2 right-2 bg-gray-200;
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  z-index: 50;
 
   & svg {
     margin: auto;
@@ -19,12 +29,10 @@
 }
 
 .main_content {
-  @apply fixed top-20 right-0 bg-white h-full shadow-2xl;
-  width: 320px;
-  z-index: 1036;
+  @apply w-full h-full px-6 pt-6 pb-4 bg-white shadow-2xl;
 }
 
-.animate_modal {
-  transform: translateX(320px);
-  @apply opacity-0;
+.product_price {
+  @apply font-semibold;
+  font-size: 18px;
 }
