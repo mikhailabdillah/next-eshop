@@ -11,13 +11,13 @@ module.exports = {
         h3: ['32px'],
         h4: ['28px'],
         h5: ['24px'],
-        h6: ['20'],
+        h6: ['20px'],
       },
       colors: {
-        'primary': '#67ad54',
-        'secondary': '#29415b',
+        primary: '#67ad54',
+        secondary: '#29415b',
       },
-    }
+    },
   },
   plugins: [require('@tailwindcss/forms')],
 }
