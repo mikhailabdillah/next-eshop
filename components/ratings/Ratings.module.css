@@ -1,0 +1,9 @@
+.root {
+  @apply inline-flex flex-row;
+
+  & svg {
+    @apply mr-1;
+    width: 16px;
+    height: 16px;
+  }
+}
