@@ -30,213 +30,213 @@
 
 .grid-auto {
   flex: 1 1 auto;
-  max-width: unset;
+  width: unset;
 }
 .grid-1 {
-  max-width: 8.333333%;
+  width: 8.333333%;
 }
 .grid-2 {
-  max-width: 16.666667%;
+  width: 16.666667%;
 }
 .grid-3 {
-  max-width: 25%;
+  width: 25%;
 }
 .grid-4 {
-  max-width: 33.333333%;
+  width: 33.333333%;
 }
 .grid-5 {
-  max-width: 41.666667%;
+  width: 41.666667%;
 }
 .grid-6 {
-  max-width: 50%;
+  width: 50%;
 }
 .grid-7 {
-  max-width: 58.333333%;
+  width: 58.333333%;
 }
 .grid-8 {
-  max-width: 66.666667%;
+  width: 66.666667%;
 }
 .grid-9 {
-  max-width: 75%;
+  width: 75%;
 }
 .grid-10 {
-  max-width: 83.333333%;
+  width: 83.333333%;
 }
 .grid-11 {
-  max-width: 91.666667%;
+  width: 91.666667%;
 }
 .grid-12 {
-  max-width: 100%;
+  width: 100%;
 }
 
 @media (min-width: 560px) {
   .sm\:grid-auto {
     flex: 1 1 auto;
-    max-width: unset;
+    width: unset;
   }
   .sm\:grid-1 {
-    max-width: 8.333333%;
+    width: 8.333333%;
   }
   .sm\:grid-2 {
-    max-width: 16.666667%;
+    width: 16.666667%;
   }
   .sm\:grid-3 {
-    max-width: 25%;
+    width: 25%;
   }
   .sm\:grid-4 {
-    max-width: 33.333333%;
+    width: 33.333333%;
   }
   .sm\:grid-5 {
-    max-width: 41.666667%;
+    width: 41.666667%;
   }
   .sm\:grid-6 {
-    max-width: 50%;
+    width: 50%;
   }
   .sm\:grid-7 {
-    max-width: 58.333333%;
+    width: 58.333333%;
   }
   .sm\:grid-8 {
-    max-width: 66.666667%;
+    width: 66.666667%;
   }
   .sm\:grid-9 {
-    max-width: 75%;
+    width: 75%;
   }
   .sm\:grid-10 {
-    max-width: 83.333333%;
+    width: 83.333333%;
   }
   .sm\:grid-11 {
-    max-width: 91.666667%;
+    width: 91.666667%;
   }
   .sm\:grid-12 {
-    max-width: 100%;
+    width: 100%;
   }
 }
 
 @media (min-width: 768px) {
   .md\:grid-auto {
     flex: 1 1 auto;
-    max-width: unset;
+    width: unset;
   }
   .md\:grid-1 {
-    max-width: 8.333333%;
+    width: 8.333333%;
   }
   .md\:grid-2 {
-    max-width: 16.666667%;
+    width: 16.666667%;
   }
   .md\:grid-3 {
-    max-width: 25%;
+    width: 25%;
   }
   .md\:grid-4 {
-    max-width: 33.333333%;
+    width: 33.333333%;
   }
   .md\:grid-5 {
-    max-width: 41.666667%;
+    width: 41.666667%;
   }
   .md\:grid-6 {
-    max-width: 50%;
+    width: 50%;
   }
   .md\:grid-7 {
-    max-width: 58.333333%;
+    width: 58.333333%;
   }
   .md\:grid-8 {
-    max-width: 66.666667%;
+    width: 66.666667%;
   }
   .md\:grid-9 {
-    max-width: 75%;
+    width: 75%;
   }
   .md\:grid-10 {
-    max-width: 83.333333%;
+    width: 83.333333%;
   }
   .md\:grid-11 {
-    max-width: 91.666667%;
+    width: 91.666667%;
   }
   .md\:grid-12 {
-    max-width: 100%;
+    width: 100%;
   }
 }
 
 @media (min-width: 960px) {
   .lg\:grid-auto {
     flex: 1 1 auto;
-    max-width: unset;
+    width: unset;
   }
   .lg\:grid-1 {
-    max-width: 8.333333%;
+    width: 8.333333%;
   }
   .lg\:grid-2 {
-    max-width: 16.666667%;
+    width: 16.666667%;
   }
   .lg\:grid-3 {
-    max-width: 25%;
+    width: 25%;
   }
   .lg\:grid-4 {
-    max-width: 33.333333%;
+    width: 33.333333%;
   }
   .lg\:grid-5 {
-    max-width: 41.666667%;
+    width: 41.666667%;
   }
   .lg\:grid-6 {
-    max-width: 50%;
+    width: 50%;
   }
   .lg\:grid-7 {
-    max-width: 58.333333%;
+    width: 58.333333%;
   }
   .lg\:grid-8 {
-    max-width: 66.666667%;
+    width: 66.666667%;
   }
   .lg\:grid-9 {
-    max-width: 75%;
+    width: 75%;
   }
   .lg\:grid-10 {
-    max-width: 83.333333%;
+    width: 83.333333%;
   }
   .lg\:grid-11 {
-    max-width: 91.666667%;
+    width: 91.666667%;
   }
   .lg\:grid-12 {
-    max-width: 100%;
+    width: 100%;
   }
 }
 
 @media (min-width: 1280px) {
   .xl\:grid-auto {
     flex: 1 1 auto;
-    max-width: unset;
+    width: unset;
   }
   .xl\:grid-1 {
-    max-width: 8.333333%;
+    width: 8.333333%;
   }
   .xl\:grid-2 {
-    max-width: 16.666667%;
+    width: 16.666667%;
   }
   .xl\:grid-3 {
-    max-width: 25%;
+    width: 25%;
   }
   .xl\:grid-4 {
-    max-width: 33.333333%;
+    width: 33.333333%;
   }
   .xl\:grid-5 {
-    max-width: 41.666667%;
+    width: 41.666667%;
   }
   .xl\:grid-6 {
-    max-width: 50%;
+    width: 50%;
   }
   .xl\:grid-7 {
-    max-width: 58.333333%;
+    width: 58.333333%;
   }
   .xl\:grid-8 {
-    max-width: 66.666667%;
+    width: 66.666667%;
   }
   .xl\:grid-9 {
-    max-width: 75%;
+    width: 75%;
   }
   .xl\:grid-10 {
-    max-width: 83.333333%;
+    width: 83.333333%;
   }
   .xl\:grid-11 {
-    max-width: 91.666667%;
+    width: 91.666667%;
   }
   .xl\:grid-12 {
-    max-width: 100%;
+    width: 100%;
   }
 }
