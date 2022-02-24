@@ -19,9 +19,7 @@ type PageProps = {
 const Home = (props: PageProps) => {
   const isMobile = useScreenSize(768)
   const [data, setData] = useState<any[]>(props.data || [])
-  const [wrapperWidth, setWrapperWidth] = useState(
-    !isMobile ? 'calc(100% - 320px)' : undefined
-  )
+  const [wrapperWidth, setWrapperWidth] = useState('calc(100% - 320px)')
   const [charm, setCharm] = useState(false)
   const [current, setCurrent] = useState<ProductCardData>()
 
@@ -45,7 +43,7 @@ const Home = (props: PageProps) => {
 
   let desktopMainStyles = {
     marginTop: 80,
-    width: wrapperWidth,
+    width: !isMobile ? wrapperWidth : '100%',
     marginLeft: !isMobile ? 320 : undefined,
   }
 
@@ -66,7 +64,7 @@ const Home = (props: PageProps) => {
           <Search />
           <Grid.Container className="my-8">
             {data.map((product, index) => (
-              <Grid.Items xs={12} sm={6} md={4} key={index}>
+              <Grid.Items xs={12} sm={6} md={6} xl={4} key={index}>
                 <ProductCard
                   onClick={() => handleCharm(product.data)}
                   data={product.data}
