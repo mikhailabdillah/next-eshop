@@ -11,9 +11,11 @@ export const useScreenSize = (size: number) => {
     }
 
     window.addEventListener('resize', onResize)
+    window.addEventListener('load', onResize)
 
     return () => {
       window.removeEventListener('resize', onResize)
+      window.removeEventListener('load', onResize)
     }
   }, [size])
 
