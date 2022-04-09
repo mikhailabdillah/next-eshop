@@ -10,9 +10,7 @@ const PriceRange = () => {
           <input type={'number'} placeholder="Min" />
           <input type={'number'} placeholder="Max" />
         </div>
-        <Button full size="small">
-          Set Price
-        </Button>
+        <Button full>Set Price</Button>
       </form>
     </div>
   )
