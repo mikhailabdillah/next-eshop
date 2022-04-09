@@ -1,5 +1,7 @@
 .root {
   @apply relative flex flex-col rounded-lg mb-6 mx-auto border-2 border-gray-200 transition-colors overflow-hidden hover:border-primary;
+  min-width: 320px;
+  max-width: 360px;
 }
 
 .product_quick_action {

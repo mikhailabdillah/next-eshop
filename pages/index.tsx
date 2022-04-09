@@ -5,7 +5,7 @@ import Meta from '@components/meta'
 import { ShopFilter } from '@components/sidebar'
 import { Search } from '@components/filter'
 import { ProductCard } from '@components/product'
-import { Grid } from '@components/core'
+import { Button, Grid } from '@components/core'
 import { useScreenSize } from '@lib/hooks/useScreenSize'
 import { ItemDetails } from '@components/sidebar'
 import { client } from '@config/prismic'
@@ -17,7 +17,8 @@ type PageProps = {
 }
 
 const Home = (props: PageProps) => {
-  const isMobile = useScreenSize(768)
+  const isMobile = useScreenSize(1280)
+  const isDesktop = useScreenSize(1440)
   const [data, setData] = useState<any[]>(props.data || [])
   const [wrapperWidth, setWrapperWidth] = useState('calc(100% - 320px)')
   const [charm, setCharm] = useState(false)
@@ -28,7 +29,7 @@ const Home = (props: PageProps) => {
     if (!charm) {
       openCharm()
     }
-    wrapperWidth && setWrapperWidth('calc(100% - 640px)')
+    !isDesktop && wrapperWidth && setWrapperWidth('calc(100% - 640px)')
   }
 
   const openCharm = () => {
@@ -38,7 +39,7 @@ const Home = (props: PageProps) => {
   const closeCharm = () => {
     setCharm(false)
     setCurrent(undefined)
-    wrapperWidth && setWrapperWidth('calc(100% - 320px)')
+    !isDesktop && wrapperWidth && setWrapperWidth('calc(100% - 320px)')
   }
 
   let desktopMainStyles = {
@@ -57,6 +58,12 @@ const Home = (props: PageProps) => {
       <Meta />
       <div id="main-shop">
         {!isMobile && <ShopFilter />}
+        <Button
+          className={'fixed bottom-10 left-0 right-0 mx-auto w-48 z-[99]'}
+          rounded
+        >
+          Filter
+        </Button>
         <div
           className="p-4 relative md:p-8 transition-all duration-300 ease-in-out"
           style={desktopMainStyles}
@@ -64,7 +71,7 @@ const Home = (props: PageProps) => {
           <Search />
           <Grid.Container className="my-8">
             {data.map((product, index) => (
-              <Grid.Items xs={12} sm={6} md={6} xl={4} key={index}>
+              <Grid.Items key={index}>
                 <ProductCard
                   onClick={() => handleCharm(product.data)}
                   data={product.data}

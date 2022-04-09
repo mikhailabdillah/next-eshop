@@ -25,8 +25,11 @@
   flex-direction: row;
   align-items: center;
   flex-shrink: 0;
-  width: 320px;
+  width: auto;
   @apply h-full font-semibold text-h5;
+  @media (min-width: 1280px) {
+    width: 320px;
+  }
 }
 
 .menu {
@@ -41,7 +44,7 @@
 }
 
 .menu_list {
-  @apply ml-6 flex flex-row flex-nowrap h-full;
+  @apply ml-6 hidden flex-row flex-nowrap h-full;
 
   & li {
     @apply px-3;
@@ -61,8 +64,12 @@
       }
     }
   }
+
+  @media (min-width: 1280px) {
+    display: flex;
+  }
 }
 
 .menu_user {
-  @apply flex flex-row mr-6 items-center;
+  @apply flex flex-row ml-auto mr-6 items-center;
 }
