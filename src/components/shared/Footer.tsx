@@ -1,12 +1,12 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import logo from '@/assets/images/shop-logo.png'
-import { Input } from '../ui/input'
-import { Label } from '../ui/label'
+import Image from "next/image";
+import Link from "next/link";
+import logo from "@/assets/images/shop-logo.png";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 
 export function Footer() {
   return (
-    <footer className="bg-gray-100 px-4 pt-24">
+    <footer className="bg-gray-500/10 px-4 pt-24">
       <div className="container mx-auto">
         <div className="flex flex-row flex-wrap gap-6 mb-10">
           <div className="basis-full md:basis-1/3">
@@ -48,5 +48,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
