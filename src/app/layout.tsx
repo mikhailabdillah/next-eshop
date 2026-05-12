@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import localfont from 'next/font/local'
 import './globals.css'
 import { cn } from '@/lib/utils'
+import { Navbar } from '@/components/shared/Navbar'
+import { Footer } from '@/components/shared/Footer'
 
 const beatrice = localfont({
   variable: '--font-beatrice',
@@ -50,7 +52,11 @@ export default function RootLayout({
       <head>
         <meta name="apple-mobile-web-app-title" content="Cloth Store" />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full">
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   )
 }
