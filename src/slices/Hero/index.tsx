@@ -1,18 +1,17 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "@/components/ui/carousel";
-import {
-  ArrowRightIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-} from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+} from "@/components/ui/carousel"
+import { getCollections } from "@/lib/shopify"
+import { ArrowRightIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
 
-export default function Hero() {
+export default async function Hero() {
+  const collections = await getCollections()
+
   return (
     <section className="py-24">
       <div className="container mx-auto px-4">
@@ -48,26 +47,33 @@ export default function Hero() {
             </div>
           </div>
           <div className="basis-full lg:basis-2/3">
-            <Carousel>
+            <Carousel
+              opts={{ dragFree: true, skipSnaps: true }}
+              className="relative overflow-hidden"
+            >
               <CarouselContent>
-                {Array.from({ length: 5 }, (_, i) => (
-                  <CarouselItem key={i} className="basis-1/2 px-4">
-                    <Image
-                      src={
-                        "https://images.unsplash.com/photo-1608748010899-18f300247112?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                      }
-                      alt=""
-                      width={4000}
-                      height={5000}
-                      className="object-cover aspect-10/11"
-                    />
-                  </CarouselItem>
-                ))}
+                {collections
+                  .filter((collection) => collection.handle)
+                  .map((collection, i) => (
+                    <CarouselItem key={i} className="basis-auto max-w-xs px-4">
+                      {collection.image && (
+                        <Link href={`/collections/${collection.handle}`}>
+                          <Image
+                            src={collection.image.url}
+                            alt={collection.image.altText || ""}
+                            width={collection.image.width}
+                            height={collection.image.height}
+                            className="object-cover aspect-4/6"
+                          />
+                        </Link>
+                      )}
+                    </CarouselItem>
+                  ))}
               </CarouselContent>
             </Carousel>
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }
