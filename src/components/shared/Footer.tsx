@@ -1,8 +1,8 @@
-import Image from "next/image";
-import Link from "next/link";
-import logo from "@/assets/images/shop-logo.png";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
+import Image from "next/image"
+import Link from "next/link"
+import logo from "@/assets/images/shop-logo.png"
+import { Input } from "../ui/input"
+import { Label } from "../ui/label"
 
 export function Footer() {
   return (
@@ -38,7 +38,12 @@ export function Footer() {
                 >
                   Subscribe to our newsletter
                 </Label>
-                <Input id="email" type="email" placeholder="Enter your email" />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  className="bg-white"
+                />
               </form>
             </div>
           </div>
@@ -48,5 +53,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }
