@@ -4,6 +4,11 @@ import logo from "@/assets/images/shop-logo.png"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 
+async function getCurrentYear() {
+  "use cache"
+  return new Date().getFullYear()
+}
+
 export function Footer() {
   return (
     <footer className="bg-gray-500/10 px-4 pt-24">
@@ -49,7 +54,7 @@ export function Footer() {
           </div>
         </div>
         <div className="py-6">
-          &copy; {new Date().getFullYear()} Cloth Store. All rights reserved.
+          <p>&copy; {getCurrentYear()} Cloth Store. All rights reserved.</p>
         </div>
       </div>
     </footer>
