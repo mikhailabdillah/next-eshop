@@ -70,7 +70,7 @@ export default async function ProductPage(props: {
   }
 
   return (
-    <>
+    <main className="relative overflow-x-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -97,6 +97,6 @@ export default async function ProductPage(props: {
           <RelatedProducts id={product.id} />
         </Suspense>
       </div>
-    </>
+    </main>
   )
 }
