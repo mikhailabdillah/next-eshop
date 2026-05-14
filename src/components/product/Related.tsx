@@ -35,6 +35,25 @@ export async function RelatedProducts({ id }: { id: string }) {
                   height={product.featuredImage?.height}
                   className="object-cover aspect-10/11"
                 />
+                <div className="mt-4 font-extrabold">{product.productType}</div>
+                <div className="flex flex-row mt-2 justify-between gap-4">
+                  <h3 className="text-base font-medium basis-2/3">
+                    {product.title}
+                  </h3>
+                  <p className="text-lg font-extrabold basis-1/3 text-right">
+                    {Intl.NumberFormat("en-US", {
+                      style: "currency",
+                      currency: product.priceRange.minVariantPrice.currencyCode,
+                    }).format(
+                      parseInt(product.priceRange.minVariantPrice.amount),
+                    )}
+                  </p>
+                </div>
+                <div className="mt-2 text-gray-500">
+                  {product.options
+                    .find((option) => option.name === "Color")
+                    ?.values.join(", ")}
+                </div>
               </Link>
             </CarouselItem>
           ))}
