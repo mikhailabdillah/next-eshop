@@ -47,12 +47,15 @@ export function ProductGallery({ images }: { images: ShopifyImage[] }) {
           <CarouselContent>
             {images.map((image) => (
               <CarouselItem key={image.id} className="basis-full">
-                <Image
-                  src={image.url}
-                  alt={image.altText || ""}
-                  width={image.width}
-                  height={image.height}
-                />
+                <div>
+                  <Image
+                    src={image.url}
+                    alt={image.altText || ""}
+                    width={image.width}
+                    height={image.height}
+                    className="object-cover aspect-4/6 size-full"
+                  />
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>
