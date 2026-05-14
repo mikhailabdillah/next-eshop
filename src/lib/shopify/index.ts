@@ -5,11 +5,7 @@ import {
 } from "../constants"
 import { isShopifyError } from "../type-guards"
 import { ensureStartsWith } from "../utils"
-import {
-  unstable_cacheLife as cacheLife,
-  unstable_cacheTag as cacheTag,
-  revalidateTag,
-} from "next/cache"
+import { cacheLife, cacheTag, revalidateTag } from "next/cache"
 import { cookies, headers } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
 import {
@@ -375,6 +371,7 @@ export async function getCollections(): Promise<Collection[]> {
         description: "All products",
         descriptionHtml: "All products",
         image: {
+          id: "",
           url: "",
           altText: "",
           width: 0,
