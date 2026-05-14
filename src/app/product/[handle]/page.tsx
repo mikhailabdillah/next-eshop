@@ -8,9 +8,9 @@ import { ProductGallery } from "@/components/product/Gallery"
 import { RelatedProducts } from "@/components/product/Related"
 
 export async function generateMetadata(props: {
-  params: { handle: string }
+  params: Promise<{ handle: string }>
 }): Promise<Metadata> {
-  const params = props.params
+  const params = await props.params
   const product = await getProduct(params.handle)
 
   if (!product) return notFound()
@@ -45,9 +45,9 @@ export async function generateMetadata(props: {
 }
 
 export default async function ProductPage(props: {
-  params: { handle: string }
+  params: Promise<{ handle: string }>
 }) {
-  const params = props.params
+  const params = await props.params
   const product = await getProduct(params.handle)
 
   if (!product) return notFound()
