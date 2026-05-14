@@ -1,6 +1,7 @@
 import { Product } from "@/lib/shopify/types"
 import { Separator } from "../ui/separator"
-import { Button } from "../ui/button"
+import { AddToCart } from "../cart/AddToCart"
+import { VariantSelector } from "./VariantSelector"
 
 export function ProductDescription({ product }: { product: Product }) {
   return (
@@ -16,22 +17,9 @@ export function ProductDescription({ product }: { product: Product }) {
       <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-10">
         {product.description}
       </p>
-      <div className="flex flex-col gap-4">
-        {product.options.map((option) => (
-          <div key={option.id}>
-            <strong>{option.name}</strong>:{" "}
-            <div className="flex flex-row flex-wrap w-full gap-2">
-              {option.values.map((value) => (
-                <Button variant={"outline"} key={value} className="min-w-20">
-                  {value}
-                </Button>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+      <VariantSelector options={product.options} variants={product.variants} />
       <Separator className="my-8" />
-      <Button>Add to Cart</Button>
+      <AddToCart product={product} />
     </div>
   )
 }

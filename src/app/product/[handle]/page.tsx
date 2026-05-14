@@ -78,7 +78,7 @@ export default async function ProductPage(props: {
         }}
       />
       <div className="container mx-auto px-4">
-        <div className="flex flex-col p-8 md:p-12 lg:flex-row lg:gap-8 dark:border-neutral-800 dark:bg-black">
+        <div className="flex flex-col lg:flex-row justify-between gap-8 dark:border-neutral-800 dark:bg-black">
           <div className="h-full w-full basis-full lg:basis-4/6">
             <div className="flex flex-row flex-wrap">
               <Suspense fallback={<div>Loading...</div>}>
