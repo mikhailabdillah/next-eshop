@@ -51,8 +51,15 @@ export type Image = {
 }
 
 export type Menu = {
-  title: string
+  id: string
+  label: string
   path: string
+}
+
+export type MenuItem = {
+  id: string
+  title: string
+  url: string
 }
 
 export type Money = {
@@ -232,6 +239,7 @@ export type ShopifyMenuOperation = {
   data: {
     menu?: {
       items: {
+        id: string
         title: string
         url: string
       }[]

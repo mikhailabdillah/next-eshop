@@ -9,14 +9,14 @@ import { useState } from "react"
 import { Separator } from "../ui/separator"
 import { Input } from "../ui/input"
 import { Sidebar } from "./Sidebar"
+import { useCart } from "@/context/cart-context"
 
-const navItems = [
-  { name: "Home", href: "/" },
-  { name: "Collection", href: "/collection" },
-  { name: "New", href: "/new" },
-]
+type NavItems = {
+  label: string
+  path: string
+}[]
 
-function Menu() {
+function Menu({ navItems }: { navItems: NavItems }) {
   return (
     <>
       <div className="flex flex-row items-center my-6 gap-4">
@@ -26,12 +26,12 @@ function Menu() {
       <div className="block lg:hidden">
         <ul className="flex flex-col gap-2">
           {navItems.map((item) => (
-            <li key={item.name} className="">
+            <li key={item.label} className="">
               <Link
-                href={item.href}
+                href={item.path}
                 className="text-lg font-medium text-primary hover:text-primary/60 transition-colors duration-200"
               >
-                {item.name}
+                {item.label}
               </Link>
             </li>
           ))}
@@ -91,8 +91,9 @@ function Menu() {
   )
 }
 
-export function Navbar() {
+export function Navbar({ navItems }: { navItems: NavItems }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const { cart } = useCart()
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev)
@@ -105,7 +106,7 @@ export function Navbar() {
   return (
     <>
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar}>
-        <Menu />
+        <Menu navItems={navItems} />
       </Sidebar>
       <header className="py-6">
         <nav className="container mx-auto">
@@ -147,12 +148,12 @@ export function Navbar() {
                 </Button>
                 <ul className="hidden lg:flex gap-6 ms-4">
                   {navItems.map((item) => (
-                    <li key={item.name} className="">
+                    <li key={item.label} className="">
                       <Link
-                        href={item.href}
+                        href={item.path}
                         className="text-lg font-medium text-primary hover:text-primary/60 transition-colors duration-200"
                       >
-                        {item.name}
+                        {item.label}
                       </Link>
                     </li>
                   ))}
@@ -170,7 +171,15 @@ export function Navbar() {
                   <HeartIcon className="size-6" />
                   <span className="sr-only">Wishlist</span>
                 </Button>
-                <Button size={"icon-lg"} className="hidden lg:inline-flex">
+                <Button
+                  size={"icon-lg"}
+                  className="hidden lg:inline-flex relative"
+                >
+                  {cart?.totalQuantity && (
+                    <span className="absolute -top-1 -right-1 bg-primary p-1 min-w-5.5 flex items-center justify-center text-white outline-2 outline-white text-[10px] rounded-2xl">
+                      {cart.totalQuantity}
+                    </span>
+                  )}
                   <HandbagIcon className="size-6" />
                   <span className="sr-only">Cart</span>
                 </Button>

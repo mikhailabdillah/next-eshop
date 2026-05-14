@@ -7,7 +7,7 @@ import { Footer } from "@/components/shared/Footer"
 import Image from "next/image"
 import background from "@/assets/images/grain-texture.png"
 import { CartProvider } from "@/context/cart-context"
-import { getCart } from "@/lib/shopify"
+import { getCart, getMenu } from "@/lib/shopify"
 
 const beatrice = localfont({
   variable: "--font-beatrice",
@@ -52,6 +52,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const cart = getCart()
+  const menu = await getMenu("main-menu")
 
   return (
     <html lang="en" className={cn("h-full", "antialiased", beatrice.variable)}>
@@ -65,7 +66,7 @@ export default async function RootLayout({
             alt="Background"
             className="fixed inset-0 -z-10 h-full w-full object-cover"
           />
-          <Navbar />
+          <Navbar navItems={menu} />
           {children}
           <Footer />
         </CartProvider>

@@ -33,6 +33,7 @@ import {
   Connection,
   Image,
   Menu,
+  MenuItem,
   Page,
   Product,
   ShopifyAddToCartOperation,
@@ -433,8 +434,9 @@ export async function getMenu(handle: string): Promise<Menu[]> {
   })
 
   return (
-    res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
-      title: item.title,
+    res.body?.data?.menu?.items.map((item: MenuItem) => ({
+      id: item.id,
+      label: item.title,
       path: item.url
         .replace(domain, "")
         .replace("/collections", "/search")
