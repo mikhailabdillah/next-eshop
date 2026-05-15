@@ -463,10 +463,7 @@ export async function getMenu(handle: string): Promise<Menu[]> {
     res.body?.data?.menu?.items.map((item: MenuItem) => ({
       id: item.id,
       label: item.title,
-      path: item.url
-        .replace(domain, "")
-        .replace("/collections", "/search")
-        .replace("/pages", ""),
+      path: item.url.replace(domain, "").replace("/pages", ""),
     })) || []
   )
 }

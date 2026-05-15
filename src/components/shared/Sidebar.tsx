@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "motion/react"
+import { usePathname } from "next/navigation"
 import { useEffect } from "react"
 
 export function Sidebar({
@@ -12,9 +13,16 @@ export function Sidebar({
   onClose: () => void
   children?: React.ReactNode
 }) {
+  const pathname = usePathname()
+
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto"
   }, [isOpen])
+
+  useEffect(() => {
+    onClose()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname])
 
   return (
     <AnimatePresence>
