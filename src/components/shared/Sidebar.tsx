@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "motion/react"
+import { useEffect } from "react"
 
 export function Sidebar({
   side,
@@ -11,6 +12,10 @@ export function Sidebar({
   onClose: () => void
   children?: React.ReactNode
 }) {
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "auto"
+  }, [isOpen])
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -22,7 +27,7 @@ export function Sidebar({
           transition={{ duration: 0.2 }}
         >
           <motion.div
-            className={`absolute top-0 h-full w-sm bg-white/80 backdrop-blur-sm p-6 ${side === "right" ? "right-0" : "left-0"}`}
+            className={`absolute top-0 h-full w-sm bg-white/80 backdrop-blur-sm ${side === "right" ? "right-0" : "left-0"}`}
             initial={{ x: side === "right" ? "100%" : "-100%" }}
             animate={{ x: 0 }}
             exit={{ x: side === "right" ? "100%" : "-100%" }}

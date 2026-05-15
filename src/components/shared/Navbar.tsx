@@ -25,7 +25,7 @@ type NavbarProps = {
 
 function Menu({ navItems, collections, newArrivals }: NavbarProps) {
   return (
-    <>
+    <div className="relative p-6 size-full overflow-y-auto">
       <div className="flex flex-row items-center my-6 gap-4">
         <h2 className="text-2xl font-extrabold">Cloth Store</h2>
         <Image src={logo} alt="Cloth store" />
@@ -84,7 +84,7 @@ function Menu({ navItems, collections, newArrivals }: NavbarProps) {
           <Input placeholder="Search" />
         </form>
       </div>
-    </>
+    </div>
   )
 }
 
