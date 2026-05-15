@@ -1,6 +1,5 @@
 "use client"
 
-import { PlusIcon } from "lucide-react"
 import { addItem } from "./actions"
 import { Product, ProductVariant } from "@/lib/shopify/types"
 import { useSearchParams } from "next/navigation"
@@ -22,19 +21,13 @@ function SubmitButton({
   if (!selectedVariantId) {
     return (
       <Button aria-label="Please select an option" disabled>
-        <div className="absolute left-0 ml-4">
-          <PlusIcon className="h-5" />
-        </div>
         Add To Cart
       </Button>
     )
   }
 
   return (
-    <Button aria-label="Add to cart">
-      <div className="absolute left-0 ml-4">
-        <PlusIcon className="h-5" />
-      </div>
+    <Button type="submit" aria-label="Add to cart">
       Add To Cart
     </Button>
   )
@@ -64,7 +57,6 @@ export function AddToCart({ product }: { product: Product }) {
         addCartItem(finalVariant, product)
         addItemAction()
       }}
-      className="w-full flex flex-col"
     >
       <SubmitButton
         availableForSale={availableForSale}
