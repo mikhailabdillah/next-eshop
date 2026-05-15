@@ -88,10 +88,12 @@ export function VariantSelector({
                   disabled={!isAvailableForSale}
                   title={`${option.name} ${value}${!isAvailableForSale ? " (Out of Stock)" : ""}`}
                   className={cx(
-                    "min-w-20",
+                    "relative min-w-20",
                     isActive
                       ? "border-primary bg-primary text-white hover:text-white"
                       : "",
+                    !isAvailableForSale &&
+                      "before:absolute before:inset-x-0 before:-z-10 before:w-full before:h-px before:-rotate-25 before:bg-gray-600 before:transition-transform after:absolute after:inset-x-0 after:-z-10 after:w-full after:h-px after:rotate-25 after:bg-gray-600 after:transition-transform",
                   )}
                 >
                   {value}
