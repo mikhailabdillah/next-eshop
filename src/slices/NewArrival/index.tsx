@@ -1,3 +1,4 @@
+import { Price } from "@/components/product/Price"
 import {
   Carousel,
   CarouselContent,
@@ -58,15 +59,13 @@ export default async function NewArrival() {
                         <h3 className="text-base font-medium basis-2/3">
                           {item.title}
                         </h3>
-                        <p className="text-lg font-extrabold basis-1/3 text-right">
-                          {Intl.NumberFormat("en-US", {
-                            style: "currency",
-                            currency:
-                              item.priceRange.minVariantPrice.currencyCode,
-                          }).format(
-                            parseInt(item.priceRange.minVariantPrice.amount),
-                          )}
-                        </p>
+                        <Price
+                          className="text-lg font-extrabold basis-1/3 text-right"
+                          currencyCode={
+                            item.priceRange.minVariantPrice.currencyCode
+                          }
+                          amount={item.priceRange.minVariantPrice.amount}
+                        />
                       </div>
                       <div className="mt-2 text-gray-500">
                         {item.options
