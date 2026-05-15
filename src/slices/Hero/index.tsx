@@ -24,7 +24,7 @@ export default async function Hero() {
                   Discover the latest trends in fashion.
                 </p>
                 <p>SUMMER</p>
-                <p>2024</p>
+                <p>2026</p>
               </div>
               <div className="flex flex-row flex-wrap justify-between gap-4">
                 <Button

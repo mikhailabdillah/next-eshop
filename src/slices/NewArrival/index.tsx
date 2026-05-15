@@ -32,8 +32,6 @@ export default async function NewArrival() {
           >
             <CarouselContent>
               {items.map((item) => {
-                console.log(item, "item")
-
                 return (
                   <CarouselItem
                     key={item.id}
