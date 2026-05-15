@@ -146,7 +146,7 @@ const reshapeCollection = (
 
   return {
     ...collection,
-    path: `/search/${collection.handle}`,
+    path: `/collections/${collection.handle}`,
   }
 }
 
@@ -303,12 +303,37 @@ export async function getCart(): Promise<Cart | undefined> {
   return reshapeCart(res.body.data.cart)
 }
 
+const defaultCollection = {
+  id: "all",
+  handle: "all",
+  title: "All",
+  description: "All products",
+  descriptionHtml: "All products",
+  image: {
+    id: "",
+    url: "",
+    altText: "",
+    width: 0,
+    height: 0,
+  },
+  seo: {
+    title: "All",
+    description: "All products",
+  },
+  path: "/collections/all",
+  updatedAt: new Date().toISOString(),
+}
+
 export async function getCollection(
   handle: string,
 ): Promise<Collection | undefined> {
   "use cache"
   cacheTag(TAGS.collections)
   cacheLife("days")
+
+  if (handle === "all") {
+    return defaultCollection
+  }
 
   const res = await shopifyFetch<ShopifyCollectionOperation>({
     query: getCollectionQuery,
