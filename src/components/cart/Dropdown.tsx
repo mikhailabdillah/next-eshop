@@ -66,13 +66,13 @@ export function CartDropdown() {
               </h3>
             </div>
           ) : (
-            <div className="p-2">
-              <ul className="mb-4">
+            <div>
+              <ul className="mb-4 overflow-y-auto max-h-[35vh] px-2">
                 {cart?.lines.map((item) => (
                   <li key={item.id}>
                     <div className="flex flex-row gap-2 py-2">
                       <div className="relative size-20 shrink-0">
-                        <div className="absolute -top-2 -left-2">
+                        <div className="absolute -top-2 -left-2 z-10">
                           <DeleteItemButton
                             item={item}
                             optimisticUpdate={updateCartItem}
@@ -122,7 +122,7 @@ export function CartDropdown() {
                   </li>
                 ))}
               </ul>
-              <div className="py-4 text-sm text-neutral-500 dark:text-neutral-400">
+              <div className="py-4 px-2 text-sm text-neutral-500 dark:text-neutral-400">
                 <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 dark:border-neutral-700">
                   <p>Taxes</p>
                   <Price
@@ -144,7 +144,7 @@ export function CartDropdown() {
                   />
                 </div>
               </div>
-              <form action={redirectToCheckout}>
+              <form action={redirectToCheckout} className="px-2 mb-4">
                 <CheckoutButton />
               </form>
             </div>
