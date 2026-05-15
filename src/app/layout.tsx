@@ -8,6 +8,7 @@ import Image from "next/image"
 import background from "@/assets/images/grain-texture.png"
 import { CartProvider } from "@/context/cart-context"
 import { getCart, getMenu } from "@/lib/shopify"
+import { Suspense } from "react"
 
 const beatrice = localfont({
   variable: "--font-beatrice",
@@ -60,15 +61,18 @@ export default async function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Cloth Store" />
       </head>
       <body className="min-h-full relative">
-        <CartProvider cartPromise={cart}>
-          <Image
-            src={background}
-            alt="Background"
-            className="fixed inset-0 -z-10 h-full w-full object-cover"
-          />
-          <Navbar navItems={menu} />
-          {children}
-          <Footer />
+        <Image
+          src={background}
+          alt="Background"
+          className="fixed inset-0 -z-10 h-full w-full object-cover"
+        />
+
+        <CartProvider cart={cart}>
+          <Suspense fallback={false}>
+            <Navbar navItems={menu} />
+            {children}
+            <Footer />
+          </Suspense>
         </CartProvider>
       </body>
     </html>

@@ -54,7 +54,6 @@ import {
   ShopifyRemoveFromCartOperation,
   ShopifyUpdateCartOperation,
 } from "./types"
-import { desc } from "motion/react-client"
 
 const domain = process.env.SHOPIFY_STORE_DOMAIN
   ? ensureStartsWith(process.env.SHOPIFY_STORE_DOMAIN, "https://")
