@@ -4,12 +4,13 @@ import Image from "next/image"
 import Link from "next/link"
 import logo from "@/assets/images/shop-logo.png"
 import { Button } from "../ui/button"
-import { HandbagIcon, HeartIcon, UserIcon } from "lucide-react"
+import { HeartIcon, UserIcon } from "lucide-react"
 import { useState } from "react"
 import { Separator } from "../ui/separator"
 import { Input } from "../ui/input"
 import { Sidebar } from "./Sidebar"
 import { useCart } from "@/context/cart-context"
+import { CartDropdown } from "../cart/Dropdown"
 
 type NavItems = {
   label: string
@@ -171,18 +172,7 @@ export function Navbar({ navItems }: { navItems: NavItems }) {
                   <HeartIcon className="size-6" />
                   <span className="sr-only">Wishlist</span>
                 </Button>
-                <Button
-                  size={"icon-lg"}
-                  className="hidden lg:inline-flex relative"
-                >
-                  {cart?.totalQuantity && (
-                    <span className="absolute -top-1 -right-1 bg-primary p-1 min-w-5.5 flex items-center justify-center text-white outline-2 outline-white text-[10px] rounded-2xl">
-                      {cart.totalQuantity}
-                    </span>
-                  )}
-                  <HandbagIcon className="size-6" />
-                  <span className="sr-only">Cart</span>
-                </Button>
+                <CartDropdown />
                 <Button size={"icon-lg"}>
                   <UserIcon className="size-6" />
                   <span className="sr-only">Profile</span>

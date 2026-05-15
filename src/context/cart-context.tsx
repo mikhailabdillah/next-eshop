@@ -14,7 +14,7 @@ import React, {
   useOptimistic,
 } from "react"
 
-type UpdateType = "plus" | "minus" | "delete"
+export type UpdateType = "plus" | "minus" | "delete"
 
 type CartAction =
   | {
@@ -27,7 +27,7 @@ type CartAction =
     }
 
 type CartContextType = {
-  cartPromise: Promise<Cart | undefined>
+  cart: Promise<Cart | undefined>
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
@@ -188,15 +188,13 @@ function cartReducer(state: Cart | undefined, action: CartAction): Cart {
 
 export function CartProvider({
   children,
-  cartPromise,
+  cart,
 }: {
   children: React.ReactNode
-  cartPromise: Promise<Cart | undefined>
+  cart: CartContextType["cart"]
 }) {
   return (
-    <CartContext.Provider value={{ cartPromise }}>
-      {children}
-    </CartContext.Provider>
+    <CartContext.Provider value={{ cart }}>{children}</CartContext.Provider>
   )
 }
 
@@ -206,7 +204,7 @@ export function useCart() {
     throw new Error("useCart must be used within a CartProvider")
   }
 
-  const initialCart = use(context.cartPromise)
+  const initialCart = use(context.cart)
   const [optimisticCart, updateOptimisticCart] = useOptimistic(
     initialCart,
     cartReducer,
@@ -229,6 +227,7 @@ export function useCart() {
       updateCartItem,
       addCartItem,
     }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [optimisticCart],
   )
 }
