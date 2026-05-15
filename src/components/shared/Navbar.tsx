@@ -9,15 +9,21 @@ import { useState } from "react"
 import { Separator } from "../ui/separator"
 import { Input } from "../ui/input"
 import { Sidebar } from "./Sidebar"
-import { useCart } from "@/context/cart-context"
 import { CartDropdown } from "../cart/Dropdown"
+import { Collection, Product } from "@/lib/shopify/types"
 
 type NavItems = {
   label: string
   path: string
 }[]
 
-function Menu({ navItems }: { navItems: NavItems }) {
+type NavbarProps = {
+  navItems: NavItems
+  collections: Collection[]
+  newArrivals: Product[]
+}
+
+function Menu({ navItems, collections, newArrivals }: NavbarProps) {
   return (
     <>
       <div className="flex flex-row items-center my-6 gap-4">
@@ -42,44 +48,34 @@ function Menu({ navItems }: { navItems: NavItems }) {
       <div>
         <h3 className="text-lg font-extrabold">Collections</h3>
         <ul className="mt-2 flex flex-col gap-1">
-          <li>
-            <Link
-              href="/product/1"
-              className="text-sm text-primary hover:text-primary/60 transition-colors duration-200"
-            >
-              Product 1
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/product/2"
-              className="text-sm text-primary hover:text-primary/60 transition-colors duration-200"
-            >
-              Product 2
-            </Link>
-          </li>
+          {collections
+            .filter((collection) => collection.handle !== "all")
+            .map((collection) => (
+              <li key={collection.id}>
+                <Link
+                  href={`/collections/${collection.handle}`}
+                  className="text-sm text-primary hover:text-primary/60 transition-colors duration-200"
+                >
+                  {collection.title}
+                </Link>
+              </li>
+            ))}
         </ul>
       </div>
       <Separator className="my-6" />
       <div>
         <h3 className="text-lg font-extrabold">New Arrivals</h3>
         <ul className="mt-2 flex flex-col gap-1">
-          <li>
-            <Link
-              href="/product/1"
-              className="text-sm text-primary hover:text-primary/60 transition-colors duration-200"
-            >
-              Product 1
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/product/2"
-              className="text-sm text-primary hover:text-primary/60 transition-colors duration-200"
-            >
-              Product 2
-            </Link>
-          </li>
+          {newArrivals.map((product) => (
+            <li key={product.id}>
+              <Link
+                href={`/product/${product.handle}`}
+                className="text-sm text-primary hover:text-primary/60 transition-colors duration-200"
+              >
+                {product.title}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
       <Separator className="my-6" />
@@ -92,9 +88,8 @@ function Menu({ navItems }: { navItems: NavItems }) {
   )
 }
 
-export function Navbar({ navItems }: { navItems: NavItems }) {
+export function Navbar({ navItems, collections, newArrivals }: NavbarProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const { cart } = useCart()
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev)
@@ -107,7 +102,11 @@ export function Navbar({ navItems }: { navItems: NavItems }) {
   return (
     <>
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar}>
-        <Menu navItems={navItems} />
+        <Menu
+          navItems={navItems}
+          collections={collections}
+          newArrivals={newArrivals}
+        />
       </Sidebar>
       <header className="py-6">
         <nav className="container mx-auto">

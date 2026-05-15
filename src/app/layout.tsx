@@ -2,13 +2,12 @@ import type { Metadata } from "next"
 import localfont from "next/font/local"
 import "./globals.css"
 import { cn } from "@/lib/utils"
-import { Navbar } from "@/components/shared/Navbar"
-import { Footer } from "@/components/shared/Footer"
 import Image from "next/image"
 import background from "@/assets/images/grain-texture.png"
 import { CartProvider } from "@/context/cart-context"
-import { getCart, getMenu } from "@/lib/shopify"
+import { getCart } from "@/lib/shopify"
 import { Suspense } from "react"
+import { Layout } from "@/components/shared/Layout"
 
 const beatrice = localfont({
   variable: "--font-beatrice",
@@ -53,7 +52,6 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const cart = getCart()
-  const menu = await getMenu("main-menu")
 
   return (
     <html lang="en" className={cn("h-full", "antialiased", beatrice.variable)}>
@@ -69,9 +67,7 @@ export default async function RootLayout({
 
         <CartProvider cart={cart}>
           <Suspense fallback={false}>
-            <Navbar navItems={menu} />
-            {children}
-            <Footer />
+            <Layout>{children}</Layout>
           </Suspense>
         </CartProvider>
       </body>

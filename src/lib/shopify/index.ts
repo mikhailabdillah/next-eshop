@@ -366,7 +366,8 @@ export async function getCollections(): Promise<Collection[]> {
     console.log("Skipping getCollections - Shopify not configured")
     return [
       {
-        handle: "",
+        id: "all",
+        handle: "all",
         title: "All",
         description: "All products",
         descriptionHtml: "All products",
@@ -393,7 +394,8 @@ export async function getCollections(): Promise<Collection[]> {
   const shopifyCollections = removeEdgesAndNodes(res.body?.data?.collections)
   const collections = [
     {
-      handle: "",
+      id: "all",
+      handle: "all",
       title: "All",
       description: "All products",
       descriptionHtml: "All products",
@@ -502,10 +504,12 @@ export async function getProducts({
   query,
   reverse,
   sortKey,
+  limit,
 }: {
   query?: string
   reverse?: boolean
   sortKey?: string
+  limit?: number
 }): Promise<Product[]> {
   "use cache"
   cacheTag(TAGS.products)
@@ -517,6 +521,7 @@ export async function getProducts({
       query,
       reverse,
       sortKey,
+      limit,
     },
   })
 

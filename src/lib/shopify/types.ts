@@ -118,6 +118,7 @@ export type ShopifyCart = {
 }
 
 export type ShopifyCollection = {
+  id: string
   handle: string
   title: string
   description: string
@@ -285,5 +286,6 @@ export type ShopifyProductsOperation = {
     query?: string
     reverse?: boolean
     sortKey?: string
+    limit?: number
   }
 }
