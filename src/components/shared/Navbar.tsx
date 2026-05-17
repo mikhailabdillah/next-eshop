@@ -62,7 +62,7 @@ function Menu({ navItems, collections, newArrivals }: NavbarProps) {
             ))}
         </ul>
       </div>
-      <Separator className="my-6" />
+      <Separator className="my-6 bg-gray-300" />
       <div>
         <h3 className="text-lg font-extrabold">New Arrivals</h3>
         <ul className="mt-2 flex flex-col gap-1">
@@ -78,12 +78,10 @@ function Menu({ navItems, collections, newArrivals }: NavbarProps) {
           ))}
         </ul>
       </div>
-      <Separator className="my-6" />
-      <div>
-        <form>
-          <Input placeholder="Search" />
-        </form>
-      </div>
+      <Separator className="my-6 bg-gray-300" />
+      <form action={"/search"}>
+        <Input name="q" placeholder="Search" autoComplete="off" />
+      </form>
     </div>
   )
 }
