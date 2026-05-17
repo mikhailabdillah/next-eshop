@@ -289,3 +289,22 @@ export type ShopifyProductsOperation = {
     limit?: number
   }
 }
+
+export type ShopifySearchProductsOperation = {
+  data: {
+    search: {
+      edges: {
+        node: ShopifyProduct
+      }[]
+    }
+  }
+  variables: {
+    query: string
+    types: string | string[]
+    limit?: number
+    after?: string
+    before?: string
+    reverse?: boolean
+    sortKey?: string
+  }
+}

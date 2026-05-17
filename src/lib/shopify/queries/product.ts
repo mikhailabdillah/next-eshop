@@ -32,6 +32,37 @@ export const getProductsQuery = /* GraphQL */ `
   ${productFragment}
 `
 
+export const getSearchProductsQuery = /* GraphQL */ `
+  query getSearchProducts(
+    $query: String!
+    $types: [SearchType!]
+    $limit: Int = 12
+    $sortKey: SearchSortKeys
+    $reverse: Boolean
+    $after: String
+    $before: String
+  ) {
+    search(
+      query: $query
+      types: $types
+      first: $limit
+      sortKey: $sortKey
+      reverse: $reverse
+      after: $after
+      before: $before
+    ) {
+      edges {
+        node {
+          ... on Product {
+            ...product
+          }
+        }
+      }
+    }
+  }
+  ${productFragment}
+`
+
 export const getProductRecommendationsQuery = /* GraphQL */ `
   query getProductRecommendations($productId: ID!) {
     productRecommendations(productId: $productId) {

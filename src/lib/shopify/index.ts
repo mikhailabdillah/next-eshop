@@ -26,6 +26,7 @@ import {
   getProductQuery,
   getProductRecommendationsQuery,
   getProductsQuery,
+  getSearchProductsQuery,
 } from "./queries/product"
 import {
   Cart,
@@ -52,6 +53,7 @@ import {
   ShopifyProductRecommendationsOperation,
   ShopifyProductsOperation,
   ShopifyRemoveFromCartOperation,
+  ShopifySearchProductsOperation,
   ShopifyUpdateCartOperation,
 } from "./types"
 
@@ -548,6 +550,45 @@ export async function getProducts({
   })
 
   return reshapeProducts(removeEdgesAndNodes(res.body.data.products))
+}
+
+export async function getSearchProducts({
+  query,
+  types,
+  limit,
+  sortKey,
+  after,
+  before,
+  reverse,
+}: {
+  query: string
+  types: string
+  limit?: number
+  sortKey?: string
+  after?: string
+  before?: string
+  reverse?: boolean
+}): Promise<Product[]> {
+  "use cache"
+  cacheTag(TAGS.products)
+  cacheLife("days")
+
+  const res = await shopifyFetch<ShopifySearchProductsOperation>({
+    query: getSearchProductsQuery,
+    variables: {
+      query,
+      types,
+      limit,
+      sortKey,
+      after,
+      before,
+      reverse,
+    },
+  })
+
+  console.log("Search products response:", res)
+
+  return reshapeProducts(removeEdgesAndNodes(res.body.data.search))
 }
 
 // This is called from `app/api/revalidate.ts` so providers can control revalidation logic.

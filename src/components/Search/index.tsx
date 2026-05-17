@@ -28,7 +28,7 @@ export function Search({ searchValue }: { searchValue: string }) {
     <div>
       <Input
         name="q"
-        placeholder="Search"
+        placeholder="Search products"
         autoComplete="off"
         value={input}
         onChange={handleChange}
