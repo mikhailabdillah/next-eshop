@@ -41,7 +41,7 @@ const beatrice = localfont({
 })
 
 export const metadata: Metadata = {
-  title: "Cloth Store",
+  title: "Cloth Store - Headless e-commerce template using Shopify, Next.js, and TypeScript",
   description:
     "A simple e-commerce application built with Shopify, Next.js, TypeScript, and Tailwind CSS.",
 }

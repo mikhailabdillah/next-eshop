@@ -586,8 +586,6 @@ export async function getSearchProducts({
     },
   })
 
-  console.log("Search products response:", res)
-
   return reshapeProducts(removeEdgesAndNodes(res.body.data.search))
 }
 

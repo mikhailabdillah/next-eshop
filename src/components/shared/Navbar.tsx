@@ -43,7 +43,7 @@ function Menu({ navItems, collections, newArrivals }: NavbarProps) {
             </li>
           ))}
         </ul>
-        <Separator className="my-6" />
+        <Separator className="my-6 bg-gray-300" />
       </div>
       <div>
         <h3 className="text-lg font-extrabold">Collections</h3>

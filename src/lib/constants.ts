@@ -1,7 +1,12 @@
 export type SortFilterItem = {
   title: string
   slug: string | null
-  sortKey: "RELEVANCE" | "BEST_SELLING" | "CREATED_AT" | "PRICE"
+  sortKey:
+    | "RELEVANCE"
+    | "BEST_SELLING"
+    | "CREATED_AT"
+    | "PRICE_LOW"
+    | "PRICE_HIGH"
   reverse: boolean
 }
 
@@ -15,27 +20,27 @@ export const defaultSort: SortFilterItem = {
 export const sorting: SortFilterItem[] = [
   defaultSort,
   {
-    title: "Trending",
-    slug: "trending-desc",
+    title: "Best Seller",
+    slug: "best-seller",
     sortKey: "BEST_SELLING",
     reverse: false,
   }, // asc
   {
     title: "Latest arrivals",
-    slug: "latest-desc",
+    slug: "latest",
     sortKey: "CREATED_AT",
     reverse: true,
   },
   {
     title: "Price: Low to high",
     slug: "price-asc",
-    sortKey: "PRICE",
+    sortKey: "PRICE_LOW",
     reverse: false,
   }, // asc
   {
     title: "Price: High to low",
     slug: "price-desc",
-    sortKey: "PRICE",
+    sortKey: "PRICE_HIGH",
     reverse: true,
   },
 ]
@@ -46,6 +51,6 @@ export const TAGS = {
   cart: "cart",
 }
 
-export const HIDDEN_PRODUCT_TAG = "nextjs-frontend-hidden"
+export const HIDDEN_PRODUCT_TAG = "hidden"
 export const DEFAULT_OPTION = "Default Title"
 export const SHOPIFY_GRAPHQL_API_ENDPOINT = "/api/2026-04/graphql.json"

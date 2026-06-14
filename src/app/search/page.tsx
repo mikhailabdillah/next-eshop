@@ -1,5 +1,6 @@
 import { ProductCard } from "@/components/product/Card"
-import { Search } from "@/components/Search"
+import { Search } from "@/components/search"
+import { Separator } from "@/components/ui/separator"
 import { defaultSort, sorting } from "@/lib/constants"
 import { getSearchProducts } from "@/lib/shopify"
 import { Suspense } from "react"
@@ -27,15 +28,27 @@ export default async function SearchPage(props: {
   return (
     <main>
       <div className="container mx-auto py-10 px-4">
-        <h1>Search {searchValue ? `for "${searchValue}"` : ""}</h1>
+        <h1 className="text-4xl mb-6">Search</h1>
         <div className="mb-4">
-          <Search searchValue={searchValue} />
+          <Search sortKey={sortKey} searchValue={searchValue} />
         </div>
-        {searchValue && searchValue.trim() && (
-          <p aria-live="polite">
-            {products.length} {resultsText} found
-          </p>
-        )}
+        <div className="flex flex-row">
+          {searchValue && (
+            <p className="font-bold">{`Search for "${searchValue}"`}</p>
+          )}
+          <Separator
+            orientation="vertical"
+            className="bg-gray-300 mx-2 data-vertical:w-0.5"
+          />
+          {searchValue && searchValue.trim() && (
+            <p aria-live="polite">
+              <strong>
+                {products.length} {resultsText}
+              </strong>{" "}
+              found
+            </p>
+          )}
+        </div>
         <Suspense fallback={<div>Loading...</div>}>
           <ul className="flex flex-row flex-wrap w-full -mx-4">
             {products.map((product) => (
