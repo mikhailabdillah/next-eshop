@@ -1,10 +1,6 @@
-import { redirect } from "next/navigation"
 import { signIn } from "@/auth"
-import { AuthError } from "next-auth"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-
-const SIGNIN_ERROR_URL = "/error"
 
 export default async function LoginPage(props: {
   searchParams: Promise<{ callbackUrl: string | undefined }>
@@ -18,9 +14,6 @@ export default async function LoginPage(props: {
             try {
               await signIn("credentials", formData)
             } catch (error) {
-              if (error instanceof AuthError) {
-                return redirect(`${SIGNIN_ERROR_URL}?error=${error.type}`)
-              }
               throw error
             }
           }}
@@ -89,9 +82,6 @@ export default async function LoginPage(props: {
                 redirectTo: callbackUrl ?? "",
               })
             } catch (error) {
-              if (error instanceof AuthError) {
-                return redirect(`${SIGNIN_ERROR_URL}?error=${error.type}`)
-              }
               throw error
             }
           }}

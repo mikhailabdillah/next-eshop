@@ -52,7 +52,7 @@ export async function registerUser({ username, email, password, confirmPassword 
 
     // Insert user manually into the adapter's collection
     await db.collection("users").insertOne({
-      name: validatedData.username,
+      username: validatedData.username,
       email: validatedData.email,
       password: hashedPassword,
       emailVerified: null, 

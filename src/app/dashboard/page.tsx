@@ -10,11 +10,13 @@ export default async function DashboardPage() {
     redirect("/login")
   }
 
+  console.log(session, "sss")
+
   return (
     <div style={{ padding: "2rem" }}>
       <h1>Dashboard Workspace</h1>
       <p>
-        Welcome back, <strong>{session.user?.name}</strong>!
+        Welcome back, <strong>{session.user?.email}</strong>!
       </p>
       <p>
         Your Access Role:{" "}
