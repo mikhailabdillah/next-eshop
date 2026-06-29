@@ -1,5 +1,5 @@
 import { ProductCard } from "@/components/product/Card"
-import SearchComponent from "@/components/search"
+import SearchComponent from "@/components/search-input"
 import { Separator } from "@/components/ui/separator"
 import { defaultSort, sorting } from "@/lib/constants"
 import { getSearchProducts } from "@/lib/shopify"
