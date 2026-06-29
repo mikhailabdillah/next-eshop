@@ -1,5 +1,5 @@
 import { ProductCard } from "@/components/product/Card"
-import { Search } from "@/components/search"
+import SearchComponent from "@/components/search-input"
 import { Separator } from "@/components/ui/separator"
 import { defaultSort, sorting } from "@/lib/constants"
 import { getSearchProducts } from "@/lib/shopify"
@@ -30,7 +30,7 @@ export default async function SearchPage(props: {
       <div className="container mx-auto py-10 px-4">
         <h1 className="text-4xl mb-6">Search</h1>
         <div className="mb-4">
-          <Search sortKey={sortKey} searchValue={searchValue} />
+          <SearchComponent sortKey={sortKey} searchValue={searchValue} />
         </div>
         <div className="flex flex-row">
           {searchValue && (
