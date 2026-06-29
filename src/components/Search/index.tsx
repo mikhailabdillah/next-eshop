@@ -17,7 +17,7 @@ type SearchProps = {
   searchValue: string
 }
 
-export function Search({ sortKey, searchValue }: SearchProps) {
+export default function Search({ sortKey, searchValue }: SearchProps) {
   const [input, setInput] = useState(searchValue)
   const searchParams = useSearchParams()
   const router = useRouter()
