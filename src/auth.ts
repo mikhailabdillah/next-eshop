@@ -50,6 +50,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           email: user.email,
           name: user.name,
           role: user.role || "user",
+          emailVerified: user.emailVerified || false,
         }
       },
     }),],
@@ -62,6 +63,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   // 2. Configure Callbacks to pass data to the client-side session
   callbacks: {
+    async signIn({ user, account }) {
+    // 1. Always allow Google OAuth sign-ins instantly
+    if (account?.provider === "google") {
+      return true;
+    }
+
+    // 2. For credentials, check if the email has been verified
+    // We fetch this via your Mongoose authorize return object
+    if (account?.provider === "credentials") {
+      if (!(user).emailVerified) {
+        throw new Error("EmailNotVerified"); // Custom error string passed to the URL
+      }
+    }
+
+    return true;
+  },
     // This runs whenever a JWT token is created or updated
     async jwt({ token, user }) {
       // "user" is only available right after a successful sign-in
