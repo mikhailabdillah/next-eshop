@@ -4,8 +4,8 @@ const LoginSchema = v.object({
   email: v.pipe(
     v.string(),
     v.trim(),
-    v.email(),
-    v.minLength(1, 'Email is required')
+    v.minLength(1, 'Email is required'),
+    v.email()
 ),
   password: v.pipe(
     v.string(),
@@ -23,8 +23,8 @@ const SignUpSchema = v.pipe(v.object({
   email: v.pipe(
     v.string(),
     v.trim(),
-    v.email(),
-    v.minLength(1, 'Email is required')
+    v.minLength(1, 'Email is required'),
+    v.email()
 ),
   password: v.pipe(
     v.string(),

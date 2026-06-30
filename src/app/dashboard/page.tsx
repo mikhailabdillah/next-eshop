@@ -10,8 +10,6 @@ export default async function DashboardPage() {
     redirect("/login")
   }
 
-  console.log(session, "sss")
-
   return (
     <div style={{ padding: "2rem" }}>
       <h1>Dashboard Workspace</h1>

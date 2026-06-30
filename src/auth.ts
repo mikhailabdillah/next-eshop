@@ -6,6 +6,7 @@ import { LoginSchema } from "./types/validation"
 import { safeParseAsync } from "valibot"
 import client from "./lib/db"
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
+import { User } from "./types/user"
  
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: MongoDBAdapter(client),
@@ -26,31 +27,31 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           throw new Error("Invalid credentials.")
         }
 
-        const { email, password } = result.output
+        const { email } = result.output
 
         // 1. Connect to your existing MongoDB database
         const db = client.db(); // Uses the default database from your URI string
 
         // 2. Look for the user inside the adapter's default "users" collection
-        const user = await db.collection("users").findOne({ email: email });
+        const user = await db.collection<User>("users").findOne({ email: email });
         if (!user || !user.password) {
-          throw new Error("No user found with this email");
+          throw new Error("Invalid email or password");
         }
 
         // logic to salt and hash password
-        const isPasswordCorrect = await bcrypt.compare(credentials.password as string, password)
+        const isPasswordCorrect = await bcrypt.compare(credentials.password as string, user.password)
         
         if (!isPasswordCorrect) {
-          throw new Error("Invalid password");
+          throw new Error("Invalid email or password");
         }
 
         // return JSON object with the user data
         return {
-          id: user.id,
+          id: user._id.toString(),
           email: user.email,
-          name: user.name,
+          username: user.username,
           role: user.role || "user",
-          emailVerified: user.emailVerified || false,
+          emailVerified: user.emailVerified ?? null,
         }
       },
     }),],
