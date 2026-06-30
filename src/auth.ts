@@ -58,6 +58,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     // 1. Force Next-Auth to use JWT session tokens instead of database sessions
   session: {
     strategy: "jwt",
+    // Set how long (in seconds) an idle session remains valid
+    // Example: 1 day = 24 hours * 60 minutes * 60 seconds
+    maxAge: 24 * 60 * 60, 
+
+    // Optional: Controls how frequently a write occurs to update the session cookie.
+    // Example: Throttle updates to occur at most once every 12 hours
+    updateAge: 12 * 60 * 60, 
   },
   pages: {
     signIn: "/login",
@@ -86,6 +93,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (user) {
         token.id = user.id;
         token.role = (user).role || "user"; // Attach custom role if it exists
+        // Affix an absolute timestamp matching your maxAge strategy
+      token.customExpiresAt = Math.floor(Date.now() / 1000) + (24 * 60 * 60);
       }
       return token;
     },
@@ -96,6 +105,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (session.user) {
         session.user.id = token.id as string;
         session.user.role = token.role as string;
+        session.expires = token.customExpiresAt as Date & string; // Forwards the data safely downstream to client hooks
       }
       return session;
     },
