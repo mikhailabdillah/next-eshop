@@ -8,6 +8,7 @@ import { CartProvider } from "@/context/cart-context"
 import { getCart } from "@/lib/shopify"
 import { Suspense } from "react"
 import { Layout } from "@/components/shared/Layout"
+import { Toaster } from "@/components/ui/sonner"
 
 const beatrice = localfont({
   variable: "--font-beatrice",
@@ -41,7 +42,8 @@ const beatrice = localfont({
 })
 
 export const metadata: Metadata = {
-  title: "Cloth Store - Headless e-commerce template using Shopify, Next.js, and TypeScript",
+  title:
+    "Cloth Store - Headless e-commerce template using Shopify, Next.js, and TypeScript",
   description:
     "A simple e-commerce application built with Shopify, Next.js, TypeScript, and Tailwind CSS.",
 }
@@ -68,6 +70,7 @@ export default async function RootLayout({
         <CartProvider cart={cart}>
           <Suspense fallback={false}>
             <Layout>{children}</Layout>
+            <Toaster />
           </Suspense>
         </CartProvider>
       </body>
